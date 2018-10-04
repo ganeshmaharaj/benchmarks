@@ -45,11 +45,11 @@ from cnn_util import log_fn
 from models import model_config
 from platforms import util as platforms_util
 from google.protobuf import text_format
-from tensorflow.contrib.compiler import xla
+#from tensorflow.contrib.compiler import xla
 from tensorflow.core.protobuf import rewriter_config_pb2
 from tensorflow.python import debug as tf_debug
 from tensorflow.python.client import timeline
-from tensorflow.python.data.experimental.ops import prefetching_ops
+#from tensorflow.python.data.experimental.ops import prefetching_ops
 from tensorflow.python.framework import graph_util
 from tensorflow.python.framework import graph_util_impl
 from tensorflow.python.framework import importer
@@ -692,6 +692,7 @@ def create_config_proto(params):
     rewrite_options.scoped_allocator_opts.enable_op.append('CollectiveReduce')
   if params.variable_update == 'horovod':
     import horovod.tensorflow as hvd  # pylint: disable=g-import-not-at-top
+    hvd.init()
     config.gpu_options.visible_device_list = str(hvd.local_rank())
 
   return config
