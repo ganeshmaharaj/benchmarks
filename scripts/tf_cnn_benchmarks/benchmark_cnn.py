@@ -37,6 +37,7 @@ import tensorflow as tf
 
 import cnn_util
 import constants
+#import datautils
 import datasets
 import flags
 import variable_mgr
